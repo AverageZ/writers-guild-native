@@ -1,0 +1,13 @@
+{
+  "name": "writers-guild-editor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && playwright test"
+  },
+  "dependencies": { "wordgard": "0.5.2" },
+  "devDependencies": { "@playwright/test": "1.55.0", "esbuild": "0.25.9", "typescript": "5.9.2" }
+}

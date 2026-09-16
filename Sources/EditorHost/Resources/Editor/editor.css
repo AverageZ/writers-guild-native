@@ -1,0 +1,17 @@
+:root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #fbfaf6; color: #302e28; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+#toolbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 3px; flex-wrap: wrap; padding: 12px 20px; background: #fbfaf6f5; border-bottom: 1px solid #e7e3d9; }
+button { appearance: none; border: 0; border-radius: 5px; background: transparent; color: #69655a; font: 11px -apple-system, sans-serif; padding: 6px 9px; cursor: pointer; }
+button:hover, button:focus-visible { background: #eae7de; color: #29271f; }
+.divider { width: 1px; height: 14px; background: #dfdacf; margin: 0 5px; }
+#editor { max-width: 820px; margin: 0 auto; padding: 45px 58px 180px; }
+#editor [contenteditable] { min-height: 65vh; outline: none; font: 19px/1.85 Georgia, 'Times New Roman', serif; letter-spacing: 0.005em; caret-color: #527368; }
+#editor p { margin: 0 0 1.1em; }
+#editor h1, #editor h2, #editor h3 { line-height: 1.35; font-weight: 500; }
+#editor h1 { font-size: 30px; margin: 0 0 1em; }
+#editor h2 { font-size: 24px; }
+#editor blockquote { border-left: 2px solid #c6c0ad; padding-left: 22px; margin-left: 0; color: #686255; }
+.guild-annotation { text-decoration: underline; text-decoration-color: #b49450; text-underline-offset: 5px; text-decoration-thickness: 1.5px; cursor: pointer; background: #c8a9650b; }
+.guild-annotation:hover { background: #c8a96525; }
+@media (max-width: 580px) { #editor { padding: 28px 25px 140px; } #toolbar { padding: 8px 12px; } }

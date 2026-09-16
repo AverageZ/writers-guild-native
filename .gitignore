@@ -1,0 +1,6 @@
+.build/
+.DS_Store
+Editor/node_modules/
+Editor/test-results/
+Editor/playwright-report/
+build/

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'none'; font-src 'none'; connect-src 'none'; media-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Writers Guild Manuscript</title><link rel="stylesheet" href="editor.css"></head>
+<body><nav id="toolbar" aria-label="Manuscript formatting">
+<button data-format="strong" title="Bold (⌘B)"><strong>B</strong></button><button data-format="emphasis" title="Italic (⌘I)"><em>I</em></button>
+<span class="divider"></span><button data-format="paragraph">Prose</button><button data-format="heading1">Heading</button><button data-format="heading2">Subheading</button>
+<span class="divider"></span><button data-format="blockquote" title="Block quote">Quote</button><button data-format="bulletList" title="Bulleted list">List</button><button data-format="orderedList" title="Numbered list">1. List</button>
+<span class="divider"></span><button data-format="undo" title="Undo (⌘Z)">Undo</button><button data-format="redo" title="Redo (⇧⌘Z)">Redo</button>
+</nav><main id="editor"></main><script src="editor.js"></script></body></html>
