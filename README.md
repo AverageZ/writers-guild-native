@@ -105,3 +105,27 @@ Manuscripts are **portable semantic HTML, not Wordgard JSON**. Supported semanti
 - No arbitrary HTML import, links, images, tables, DOCX fidelity, publishing, or cloud storage.
 
 See [Architecture](docs/ARCHITECTURE.md), [Domain](docs/DOMAIN.md), and [Decisions](docs/DECISIONS/001-native-boundaries.md).
+
+## Agent workflows
+
+Portable planning and contribution skills are adapted from sibling `strategy-game`. Edit the canonical sources in `.agents/skills/` and `.agents/commands/`; `.claude/skills` and `.claude/commands` are relative symlinks to those directories, so no generation or sync command is needed.
+
+| Skill | Use |
+| --- | --- |
+| `wayfinder` | Large, uncertain efforts: a GitHub planning map with native child decision issues and blocking relationships |
+| `grilling` | Stress-test a plan in question rounds; decisions remain with the human |
+| `domain-modeling` | Sharpen language in `docs/DOMAIN.md` and record consequential decisions in `docs/DECISIONS/` |
+| `research` | Bounded, cited investigations |
+| `prototype` | Throwaway native UI or logic experiments; technical smoke is separate from human design approval |
+| `to-spec` | Publish agreed decisions as an implementation-spec issue, without starting implementation |
+| `git-workflow` | Issue-linked branch, commit, and PR naming; mutation safety and surface-appropriate verification |
+| `pr` | PR bodies with Summary, Evidence, and Merge Danger |
+| `test-quality` | Behavior-focused Swift, native WKWebView, and embedded-editor test seams |
+
+The command entrypoints are `grill-me`, `ticket-task`, `ticket-task-lite`, `triage-issue`, and `reflect`. Each also has a `source-command-<name>` skill for harnesses that discover skills rather than commands. Load a skill through the harness when available; otherwise read `.agents/skills/<name>/SKILL.md` and follow it. For example, `grill-me` loads `grilling`; authorized branch/commit/PR work loads `git-workflow` and `pr`.
+
+Wayfinder and specs explicitly target **`AverageZ/writers-guild-native`**, using authenticated GitHub CLI operations. The installed tracker labels are `wayfinder:map`, `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, `wayfinder:task`, and `ready-for-agent`. `ready-for-agent` marks a spec ready for implementation planning, not permission to execute. A simple implementation task does not need a Wayfinder map. See [tracker operations](.agents/skills/wayfinder/issue-tracker.md) for claims, dependencies, and concurrent edits.
+
+Check a workflow-only change by exercising canonical and Claude discovery paths, resolving local skill/reference links, and querying the live tracker; do not substitute an unrelated app test run. The initial port smoke verified 14 skills, 5 commands, 30 local Markdown links, all 6 labels, and read access to GitHub's native sub-issue and blocking endpoints. Git branch/commit/PR naming was exercised by the port's own contribution workflow. Native/editor code changes still require the relevant checks and runtime scenarios above.
+
+Upstream planning-skill attribution is retained in the skill files, with the [Matt Pocock MIT license](.agents/skills/LICENSE-matt-pocock). Gameplay skills and the source project's game-specific E2E/configuration tooling are intentionally not imported.
