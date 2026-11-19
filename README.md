@@ -106,6 +106,8 @@ Manuscripts are **portable semantic HTML, not Wordgard JSON**. Supported semanti
 
 See [Architecture](docs/ARCHITECTURE.md), [Domain](docs/DOMAIN.md), and [Decisions](docs/DECISIONS/001-native-boundaries.md).
 
+The agreed [Level writing-workspace contract](docs/DECISIONS/002-level-workspace-contract.md) defines nonplayable planning blocks and optional references to separately authored gameplay. It is a design decision, not implemented Level UI or gameplay; production delivery is tracked in [#16](https://github.com/AverageZ/writers-guild-native/issues/16).
+
 ## Agent workflows
 
 Portable planning and contribution skills are adapted from sibling `strategy-game`. Edit the canonical sources in `.agents/skills/` and `.agents/commands/`; `.claude/skills` and `.claude/commands` are relative symlinks to those directories, so no generation or sync command is needed.
