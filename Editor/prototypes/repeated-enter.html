@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Repeated Enter — Writers Guild Prototype</title><link rel="stylesheet" href="editor.css">
+<style>
+  body { display: flex; flex-direction: column; height: 100vh; }
+  header { padding: 14px 22px; border-bottom: 1px solid #e7e3d9; }
+  header h1 { margin: 0 0 4px; font-size: 18px; }
+  header p { margin: 0; color: #69655a; font-size: 12px; }
+  .modes, #actions { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+  .modes { margin: 10px 0 5px; }
+  button { font-size: 12px; }
+  .modes button, #actions button { border: 1px solid #ddd6c9; }
+  button[aria-pressed=true], button[aria-current=true] { background: #e4ebe4; color: #27382d; font-weight: 600; }
+  button:disabled { opacity: .45; cursor: default; }
+  #status { margin: 7px 0 0; min-height: 16px; color: #435d4a; font-size: 12px; }
+  .workspace { display: grid; grid-template-columns: 224px minmax(0, 1fr); flex: 1; min-height: 0; }
+  aside { overflow: auto; background: #f1eee5; padding: 15px 12px; border-right: 1px solid #e7e3d9; }
+  aside h2 { font-size: 12px; margin: 10px 0 3px 7px; }
+  aside button { width: 100%; text-align: left; display: block; }
+  aside small { display: block; margin-top: 3px; color: #69655a; }
+  aside .step { display: flex; border-bottom: 1px solid #ddd6c9; padding-bottom: 5px; }
+  #page { min-width: 0; overflow: auto; }
+  #actions { padding: 10px 20px; border-bottom: 1px solid #e7e3d9; }
+  #toolbar { position: relative; padding: 4px 13px; }
+  #editor, #level { padding: 24px clamp(25px, 7vw, 78px) 40px; }
+  #editor [contenteditable] { min-height: 40vh; }
+  #editor p:empty { min-height: 1.85em; }
+  #boundary { margin: 12px 20px 0; text-align: center; color: #69655a; font-size: 13px; }
+  .page-break { display: flex; gap: 12px; align-items: center; margin: 20px 0; color: #526153; }
+  #editor .page-break { min-height: 0; }
+  .page-break::before, .page-break::after { content: ''; flex: 1; border-top: 1px dashed #abb6a8; }
+  .page-break span::before { content: 'Page break'; font: 600 11px system-ui; letter-spacing: .13em; text-transform: uppercase; }
+  @media print {
+    body, .workspace, #page { display: block; height: auto; overflow: visible; }
+    header, aside, #actions, #toolbar, #boundary, #level { display: none; }
+    #editor { max-width: none; padding: 0; }
+    #editor > *, #editor wg-scroller { border: 0; overflow: visible; }
+    #editor [contenteditable] { min-height: 0; }
+    .page-break { display: block; margin: 0; break-before: page; }
+    .page-break::before, .page-break::after, .page-break span { display: none; }
+  }
+  #level { max-width: 700px; margin: auto; }
+  #level dt { margin-top: 17px; font-size: 12px; font-weight: 600; }
+  #level dd { margin: 4px 0 0; }
+</style></head>
+<body>
+<header>
+  <h1>Repeated Enter · Throwaway comparison</h1>
+  <p>Does a quick Enter sequence keep you drafting, or make ordinary editing feel unpredictable? Sample only · nothing saved.</p>
+  <div class="modes" role="group" aria-label="Interaction variant">
+    <button id="rhythm" aria-pressed="false">A · Repeated Enter</button>
+    <button id="explicit" aria-pressed="false">B · Explicit commands</button>
+    <button id="hybrid" aria-pressed="true">C · Page break within Scene</button>
+    <button id="reset">Reset sample</button>
+  </div>
+  <p id="hint"></p><div id="status" role="status"></div>
+</header>
+<div class="workspace">
+  <aside aria-label="Manuscript contents">
+    <div class="step"><button id="previous">← Previous</button><button id="next">Next →</button></div>
+    <div id="outline"></div>
+  </aside>
+  <main id="page">
+    <div id="actions" aria-label="Manuscript structure">
+      <button id="scene" title="Command-Return">New Scene · ⌘↵</button>
+      <button id="chapter" title="Command-Shift-Return">New Chapter · ⌘⇧↵</button>
+      <button id="correct" hidden>Keep blank paragraphs instead</button>
+    </div>
+    <div id="boundary"></div>
+    <nav id="toolbar" aria-label="Manuscript formatting">
+      <button data-format="strong" title="Bold (⌘B)"><strong>B</strong></button><button data-format="emphasis" title="Italic (⌘I)"><em>I</em></button>
+      <span class="divider"></span><button data-format="heading">Heading</button><button data-format="quote">Quote</button><button data-format="list">List</button>
+      <span class="divider"></span><button id="undo" title="Undo (⌘Z)">Undo</button><button id="redo" title="Redo (⇧⌘Z)">Redo</button>
+    </nav>
+    <div id="editor"></div>
+    <section id="level" tabindex="-1" hidden aria-label="Level details"></section>
+  </main>
+</div>
+<script src="editor.js"></script></body></html>
