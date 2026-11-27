@@ -19,7 +19,43 @@ An **observation** is an agent's question or critique anchored to a manuscript r
 
 An **agent memory** is an inspectable belief with confidence, strength, recall, decay and feedback provenance. Working memory is review-scoped; episodes record experience; semantic beliefs consolidate repeated episodes. None participates in authoritative world-state computation.
 
-Sources are referenced by stable IDs. Text anchors include UTF-16 range, quote, prefix, suffix and revision. Missing or ambiguous anchors become obsolete rather than landing on a coincidentally similar sentence.
+Sources are referenced by stable IDs. Text anchors include UTF-16 range, quote, prefix, suffix and revision. Missing or ambiguous locations must never land on a coincidentally similar sentence; an obsolete observation and unfinished writer-owned work have distinct lifecycles.
+
+## Agreed drafting language
+
+These terms describe the target design, not implemented features. The placeholder terms come from [How should placeholders behave throughout drafting and revision?](https://github.com/AverageZ/writers-guild-native/issues/6#issuecomment-7064077627).
+
+**Placeholder**: A lightweight, writer-owned reminder of unfinished writing at a gap or over provisional prose, with an optional note. Its inline mark, note and navigation entry represent one item, distinct from outline notes, ghost notes and Guild observations; placeholder notes are not prose or story evidence, while marked prose remains prose and reviewable.
+
+**Resolved placeholder**: A placeholder explicitly marked complete by the writer, no longer shown as active but retaining its note in resolved history. Typing or rewriting alone does not establish completion.
+
+**Needs placement**: An open placeholder whose location cannot safely be recovered, retaining its note and last-known context rather than guessing from matching words. Known deletion of the entire marked passage removes its placeholder instead; uncertainty is not evidence of deliberate deletion.
+
+**Darling**: In the [agreed Darlings design](https://github.com/AverageZ/writers-guild-native/issues/7#issuecomment-7064569993), a writer-owned rich-text passage deliberately cut and kept outside its story's manuscript for possible return. It carries complete selected placeholders, but not Guild observations or historical evidence; restoring it returns the passage to the manuscript and uses up the Darling.
+
+**Loose idea**: A writer-owned planning item with no manuscript position or story time. Promotion explicitly makes it a Scene or Level block in a chapter; its note does not become prose or establish a story event.
+
+**Outline note**: A writer-owned planning summary attached to a manuscript block, not to a passage. A Level's planning summary is its intent note. Neither is manuscript prose or evidence.
+
+**Ghost note**: In the [outline prototype decision](https://github.com/AverageZ/writers-guild-native/issues/9#issuecomment-7118598073), a writer-owned drafting prompt anchored to a specific passage. It stays at the passage as writing continues and does not become prose, evidence, or a Guild observation.
+
+**Resolved ghost note**: A ghost note the writer explicitly marks complete. It no longer appears inline and remains available in the Scene's resolved notes.
+
+## Agreed manuscript organization
+
+These terms were agreed in [What manuscript hierarchy should chapters, sections, and scenes use?](https://github.com/AverageZ/writers-guild-native/issues/5#issuecomment-6370783133). They describe the target domain design, not a claim that mixed-block storage or gameplay is implemented.
+
+**Story**: One independently ordered manuscript within a world, with its own chronology. Its chapters organize manuscript blocks; there is no separate book container in this design.
+
+**Chapter**: An ordered grouping of zero or more manuscript blocks, mixing prose Scenes and Level blocks, not a text-bearing or independently timed unit. Regular chapters number from 1 in presentation order, excluding Prologue/Epilogue; numbers and optional writer-authored titles are separate from chapter identity. Moving a chapter carries its blocks in their existing order without changing their chronology.
+
+**Scene**: A prose/exposition block belonging to exactly one chapter in its story, retaining stable identity and chronological time independently of manuscript placement. Playable action is a separate Level block, not scene prose.
+
+**Section break**: A boundary between adjacent prose Scenes within a chapter, not another grouping or timed entity. Entering or leaving a Level is a content-type transition; its visual treatment and editing gesture are separate decisions.
+
+**Prologue / Epilogue**: Optional, unnumbered chapter roles, with at most one of each per story. A Prologue is first and an Epilogue is last; a conflicting presentation move requires an explicit role change rather than silently changing roles or relocating content. These roles permit the same mixture of prose Scenes and Level blocks as regular chapters.
+
+Presentation moves do not change block content or established facts or events.
 
 ## Agreed Level workspace language
 
